@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/src/auth/components/custom_text_field.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -6,6 +7,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green,
       body: Column(
         children: [
           Expanded(
@@ -15,7 +17,29 @@ class SignInScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              color: Colors.white,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 32,
+                vertical: 40,
+              ),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(45),
+                ),
+              ),
+              child: Column(
+                children: const [
+                  CustomTextField(
+                    icon: Icons.email,
+                    label: 'Email',
+                  ),
+                  CustomTextField(
+                    icon: Icons.lock,
+                    label: 'Senha',
+                    isObscure: true,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
