@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/auth/components/custom_text_field.dart';
 
@@ -11,8 +12,51 @@ class SignInScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Container(
-              color: Colors.green,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text.rich(
+                  TextSpan(
+                    style: TextStyle(
+                      fontSize: 40,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'Quitanda',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Nextar',
+                        style: TextStyle(
+                          color: Colors.red,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                  child: DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 25,
+                    ),
+                    child: AnimatedTextKit(
+                      pause: Duration.zero,
+                      repeatForever: true,
+                      animatedTexts: [
+                        FadeAnimatedText('Frutas'),
+                        FadeAnimatedText('Verduras'),
+                        FadeAnimatedText('Legumes'),
+                        FadeAnimatedText('Carnes'),
+                        FadeAnimatedText('Laticíneos'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
