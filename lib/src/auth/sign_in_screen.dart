@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/auth/components/custom_text_field.dart';
+import 'package:quitanda_virtual/src/config/custom_colors.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -8,20 +9,20 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: CustomColors.customSwatchColor,
       body: Column(
         children: [
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text.rich(
+                Text.rich(
                   TextSpan(
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 40,
                     ),
                     children: [
-                      TextSpan(
+                      const TextSpan(
                         text: 'Quitanda',
                         style: TextStyle(
                           color: Colors.black,
@@ -31,7 +32,7 @@ class SignInScreen extends StatelessWidget {
                       TextSpan(
                         text: 'Nextar',
                         style: TextStyle(
-                          color: Colors.red,
+                          color: CustomColors.customContrastColor,
                         ),
                       )
                     ],
@@ -103,10 +104,10 @@ class SignInScreen extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       'Esqueceu a senha?',
                       style: TextStyle(
-                        color: Colors.red,
+                        color: CustomColors.customContrastColor,
                       ),
                     ),
                   ),
