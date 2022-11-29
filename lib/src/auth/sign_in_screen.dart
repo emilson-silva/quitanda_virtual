@@ -38,7 +38,7 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: 'Nextar',
+                            text: 'Goiana',
                             style: TextStyle(
                               color: CustomColors.customContrastColor,
                             ),
