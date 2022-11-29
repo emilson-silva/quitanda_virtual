@@ -6,9 +6,12 @@ import 'package:quitanda_virtual/src/config/custom_colors.dart';
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
 
-  final cpfFormater = MaskTextInputFormatter(
+  final cpfFormatter = MaskTextInputFormatter(
     mask: '###.###.###-##',
     filter: {'#': RegExp(r'[0-9]')},
+  );
+  final phoneFormatter = MaskTextInputFormatter(
+    mask: '## # ####-####',
   );
 
   @override
@@ -63,14 +66,15 @@ class SignUpScreen extends StatelessWidget {
                           icon: Icons.person,
                           label: 'Nome',
                         ),
-                        const CustomTextField(
+                        CustomTextField(
                           icon: Icons.phone,
                           label: 'Celular',
+                          inputFormaters: [phoneFormatter],
                         ),
                         CustomTextField(
                           icon: Icons.file_copy,
                           label: 'CPF',
-                          inputFormaters: [cpfFormater],
+                          inputFormaters: [cpfFormatter],
                         ),
                         SizedBox(
                           height: 50,
