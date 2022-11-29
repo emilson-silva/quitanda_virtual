@@ -1,4 +1,6 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/src/auth/components/search_field.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 
 class HomeTab extends StatelessWidget {
@@ -11,11 +13,27 @@ class HomeTab extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.shopping_cart,
-              color: CustomColors.customSwatchColor,
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 15.0,
+              right: 15.0,
+            ),
+            child: GestureDetector(
+              onTap: () {},
+              child: Badge(
+                badgeColor: CustomColors.customContrastColor,
+                badgeContent: const Text(
+                  '2',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+                child: Icon(
+                  Icons.shopping_cart,
+                  color: CustomColors.customSwatchColor,
+                ),
+              ),
             ),
           )
         ],
@@ -41,6 +59,11 @@ class HomeTab extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      body: Column(
+        children: const [
+          SearchField(),
+        ],
       ),
     );
   }
