@@ -2,53 +2,59 @@ import 'package:quitanda_virtual/src/models/item_model.dart';
 
 ItemModel apple = ItemModel(
   description:
-      'A melhor maçã da região e que connta com o melhor preço de qualquer quitanda',
+      'A melhor maçã da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
   imgUrl: 'assets/fruits/apple.png',
   itemName: 'Maçã',
   price: 5.5,
-  unit: 'Kg',
+  unit: 'kg',
 );
+
 ItemModel grape = ItemModel(
-  description:
-      'A melhor uva da região e que connta com o melhor preço de qualquer quitanda',
   imgUrl: 'assets/fruits/grape.png',
   itemName: 'Uva',
   price: 7.4,
-  unit: 'Kg',
-);
-ItemModel guava = ItemModel(
+  unit: 'kg',
   description:
-      'A melhor Goiaba da região e que connta com o melhor preço de qualquer quitanda',
+      'A melhor uva da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
+);
+
+ItemModel guava = ItemModel(
   imgUrl: 'assets/fruits/guava.png',
   itemName: 'Goiaba',
   price: 11.5,
-  unit: 'Kg',
-);
-ItemModel kiwi = ItemModel(
+  unit: 'kg',
   description:
-      'O melhor kiwi da região e que connta com o melhor preço de qualquer quitanda',
+      'A melhor goiaba da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
+);
+
+ItemModel kiwi = ItemModel(
   imgUrl: 'assets/fruits/kiwi.png',
   itemName: 'Kiwi',
   price: 2.5,
-  unit: 'Kg',
-);
-ItemModel mango = ItemModel(
+  unit: 'un',
   description:
-      'A melhor mang da região e que connta com o melhor preço de qualquer quitanda',
-  imgUrl: 'assets/fruits/mango.png',
-  itemName: 'Manga',
-  price: 8,
-  unit: 'Kg',
-);
-ItemModel papaya = ItemModel(
-  description:
-      'O melhor mamão da região e que connta com o melhor preço de qualquer quitanda',
-  imgUrl: 'assets/fruits/papaya.png',
-  itemName: 'Mamão',
-  price: 9.5,
-  unit: 'Kg',
+      'O melhor kiwi da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
 );
 
+ItemModel mango = ItemModel(
+  imgUrl: 'assets/fruits/mango.png',
+  itemName: 'Manga',
+  price: 2.5,
+  unit: 'un',
+  description:
+      'A melhor manga da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
+);
+
+ItemModel papaya = ItemModel(
+  imgUrl: 'assets/fruits/papaya.png',
+  itemName: 'Mamão papaya',
+  price: 8,
+  unit: 'kg',
+  description:
+      'O melhor mamão da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
+);
+
+// Lista de produtos
 List<ItemModel> items = [
   apple,
   grape,
