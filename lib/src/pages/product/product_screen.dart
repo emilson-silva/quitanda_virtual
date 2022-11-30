@@ -28,6 +28,7 @@ class ProductScreen extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.shade600,
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
