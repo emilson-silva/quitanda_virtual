@@ -57,7 +57,6 @@ ItemModel papaya = ItemModel(
       'O melhor mamão da região e que conta com o melhor preço de qualquer quitanda. Este item conta com vitaminas essenciais para o fortalecimento corporal, resultando em uma vida saudável.',
 );
 
-// Lista de produtos
 List<ItemModel> items = [
   apple,
   grape,
@@ -72,16 +71,17 @@ List<String> categories = [
   'Grãos',
   'Verduras',
   'Temperos',
-  'Cereais',
+  'Careais',
 ];
+
 List<CartItemModel> cartItems = [
   CartItemModel(
     item: apple,
-    quantity: 2,
+    quantity: 4,
   ),
   CartItemModel(
     item: mango,
-    quantity: 3,
+    quantity: 2,
   ),
   CartItemModel(
     item: guava,
@@ -90,29 +90,54 @@ List<CartItemModel> cartItems = [
 ];
 
 UserModel user = UserModel(
-  phone: '62 9 8247-1613',
-  cpf: '029.934.979-09',
-  email: 'emilsongyn17@gmail.com',
-  name: 'Evailson Pereira',
+  phone: '99 9 9999-9999',
+  cpf: '999.999.999-99',
+  email: 'user@email.com',
+  name: 'New User',
   password: '',
 );
 
 List<OrderModel> orders = [
+  // Pedido 01
   OrderModel(
-    copyAndPaste: 'hdq1h347nabyu1',
+    copyAndPaste: 'q1w2e3r4t5y6',
     createdDateTime: DateTime.parse(
-      '2022-12-02 11:37:09.546',
+      '2022-06-08 10:00:10.458',
     ),
     overdueDateTime: DateTime.parse(
-      '2022-12-04 12:09:56.345',
+      '2022-06-08 11:00:10.458',
     ),
-    id: 'qfagagvshahak',
+    id: 'asd6a54da6s2d1',
     status: 'pending_payment',
     total: 11.0,
     items: [
       CartItemModel(
         item: apple,
         quantity: 2,
+      ),
+      CartItemModel(
+        item: mango,
+        quantity: 2,
+      ),
+    ],
+  ),
+
+  // Pedido 02
+  OrderModel(
+    copyAndPaste: 'q1w2e3r4t5y6',
+    createdDateTime: DateTime.parse(
+      '2022-06-08 10:00:10.458',
+    ),
+    overdueDateTime: DateTime.parse(
+      '2022-06-08 11:00:10.458',
+    ),
+    id: 'a65s4d6a2s1d6a5s',
+    status: 'delivered',
+    total: 11.5,
+    items: [
+      CartItemModel(
+        item: guava,
+        quantity: 1,
       ),
     ],
   ),

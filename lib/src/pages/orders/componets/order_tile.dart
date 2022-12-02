@@ -35,7 +35,43 @@ class OrderTile extends StatelessWidget {
               ),
             ],
           ),
-          children: [],
+          childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          children: [
+            SizedBox(
+              height: 150,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: ListView(
+                      children: order.items.map((orderItem) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                '${orderItem.quantity} ${orderItem.item.unit} ',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Expanded(child: Text(orderItem.item.itemName)),
+                              Text(utilsServices
+                                  .priceToCurrency(orderItem.totalPrice()))
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(color: Colors.blue),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
