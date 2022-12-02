@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 import 'package:quitanda_virtual/src/models/item_model.dart';
-import 'package:quitanda_virtual/src/pages/home/components/utils_services.dart';
+import 'package:quitanda_virtual/src/services/utils_services.dart';
 import 'package:quitanda_virtual/src/pages/product/product_screen.dart';
 
 class ItemTile extends StatelessWidget {
