@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/src/models/cart_item_model.dart';
 import 'package:quitanda_virtual/src/models/order_model.dart';
 import 'package:quitanda_virtual/src/services/utils_services.dart';
 
@@ -45,21 +46,9 @@ class OrderTile extends StatelessWidget {
                     flex: 3,
                     child: ListView(
                       children: order.items.map((orderItem) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Row(
-                            children: [
-                              Text(
-                                '${orderItem.quantity} ${orderItem.item.unit} ',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Expanded(child: Text(orderItem.item.itemName)),
-                              Text(utilsServices
-                                  .priceToCurrency(orderItem.totalPrice()))
-                            ],
-                          ),
+                        return _OrderItemWidgett(
+                          utilsServices: utilsServices,
+                          orderItem: orderItem,
                         );
                       }).toList(),
                     ),
@@ -73,6 +62,36 @@ class OrderTile extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _OrderItemWidgett extends StatelessWidget {
+  const _OrderItemWidgett({
+    Key? key,
+    required this.utilsServices,
+    required this.orderItem,
+  }) : super(key: key);
+
+  final UtilsServices utilsServices;
+  final CartItemModel orderItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Text(
+            '${orderItem.quantity} ${orderItem.item.unit} ',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Expanded(child: Text(orderItem.item.itemName)),
+          Text(utilsServices.priceToCurrency(orderItem.totalPrice()))
+        ],
       ),
     );
   }
