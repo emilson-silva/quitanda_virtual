@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/models/order_model.dart';
+import 'package:quitanda_virtual/src/services/utils_services.dart';
 
 class OrderTile extends StatelessWidget {
   final OrderModel order;
 
-  const OrderTile({
+  OrderTile({
     super.key,
     required this.order,
   });
+
+  final UtilsServices utilsServices = UtilsServices();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class OrderTile extends StatelessWidget {
             children: [
               Text('Pedidos: ${order.id}'),
               Text(
-                '12/12/2012',
+                utilsServices.formatDateTime(order.createdDateTime),
                 style: const TextStyle(
                   fontSize: 12,
                   color: Colors.black,
