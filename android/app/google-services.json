@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639171645913",
+    "project_id": "quitandavirtual-43860",
+    "storage_bucket": "quitandavirtual-43860.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639171645913:android:ad6d9db6ad70e2adaf89c8",
+        "android_client_info": {
+          "package_name": "com.example.quitanda_virtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639171645913-2u615agopfg9d8dakq3fjatfd7jvtusl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSy4AUoamFIjKd4cRcD2ZH2AyA23xrgzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639171645913-2u615agopfg9d8dakq3fjatfd7jvtusl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
