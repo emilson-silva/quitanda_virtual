@@ -7,6 +7,7 @@ import 'package:quitanda_virtual/src/config/custom_colors.dart';
 import 'package:quitanda_virtual/src/pages/home/components/category_tile.dart';
 import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
 import 'package:quitanda_virtual/src/pages/home/components/item_tile.dart';
+import 'package:quitanda_virtual/src/services/utils_services.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
