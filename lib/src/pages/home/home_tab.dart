@@ -4,11 +4,11 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/app_name_widget.dart';
+import 'package:quitanda_virtual/src/pages/commom_widgets/custom_shimmer.dart';
 
 import 'package:quitanda_virtual/src/pages/home/components/category_tile.dart';
 import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
 import 'package:quitanda_virtual/src/pages/home/components/item_tile.dart';
-import 'package:quitanda_virtual/src/services/utils_services.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -153,12 +153,11 @@ class _HomeTabState extends State<HomeTab> {
                         (index) => Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.only(right: 12),
-                          child: Container(),
-                          // CustomShimmer(
-                          //   height: 20,
-                          //   width: 80,
-                          //   borderRadius: BorderRadius.circular(20),
-                          // ),
+                          child: CustomShimmer(
+                            height: 20,
+                            width: 80,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
                       ),
                     ),
@@ -193,12 +192,11 @@ class _HomeTabState extends State<HomeTab> {
                       childAspectRatio: 9 / 11.5,
                       children: List.generate(
                         10,
-                        (index) => Container(),
-                        // CustomShimmer(
-                        //   height: double.infinity,
-                        //   width: double.infinity,
-                        //   borderRadius: BorderRadius.circular(20),
-                        // ),
+                        (index) => CustomShimmer(
+                          height: double.infinity,
+                          width: double.infinity,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
                     ),
             ),
