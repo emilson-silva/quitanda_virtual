@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:quitanda_virtual/src/pages/commom_widgets/app_name_widget.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/custom_text_field.dart';
 import 'package:quitanda_virtual/src/pages/auth/sign_up_screen.dart';
 import 'package:quitanda_virtual/src/pages/base/base_screen.dart';
@@ -24,27 +25,9 @@ class SignInScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text.rich(
-                      TextSpan(
-                        style: const TextStyle(
-                          fontSize: 40,
-                        ),
-                        children: [
-                          const TextSpan(
-                            text: 'Quitanda',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'Goiana',
-                            style: TextStyle(
-                              color: CustomColors.customContrastColor,
-                            ),
-                          )
-                        ],
-                      ),
+                    const AppNameWidget(
+                      greenTitleColor: Colors.white,
+                      textSIze: 40,
                     ),
                     SizedBox(
                       height: 30,

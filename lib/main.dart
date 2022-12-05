@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/pages/auth/sign_in_screen.dart';
+import 'package:quitanda_virtual/src/pages/splash/splash_screen.dart';
 import 'package:quitanda_virtual/src/services/firebase_options.dart';
 
 void main() async {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white.withAlpha(190),
       ),
       debugShowCheckedModeBanner: false,
-      home: const SignInScreen(),
+      home: const SplashScreen(),
     );
   }
 }

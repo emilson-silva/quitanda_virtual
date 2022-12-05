@@ -3,6 +3,7 @@ import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
+import 'package:quitanda_virtual/src/pages/commom_widgets/app_name_widget.dart';
 
 import 'package:quitanda_virtual/src/pages/home/components/category_tile.dart';
 import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
@@ -51,8 +52,7 @@ class _HomeTabState extends State<HomeTab> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: Container(),
-        //AppNameWidget(),
+        title: const AppNameWidget(),
         actions: [
           Padding(
             padding: const EdgeInsets.only(
