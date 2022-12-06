@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:quitanda_virtual/src/pages/auth/sign_in_screen.dart';
 import 'package:quitanda_virtual/src/pages/splash/splash_screen.dart';
+import 'package:quitanda_virtual/src/pages_routes/app_pages.dart';
 import 'package:quitanda_virtual/src/services/firebase_options.dart';
 
 void main() async {
@@ -27,8 +28,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white.withAlpha(190),
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
-      getPages: [],
+      initialRoute: PagesRoutes.splashRoute,
+      getPages: AppPages.pages,
     );
   }
 }
