@@ -71,7 +71,7 @@ List<String> categories = [
   'Grãos',
   'Verduras',
   'Temperos',
-  'Careais',
+  'Cereais',
 ];
 
 List<CartItemModel> cartItems = [
