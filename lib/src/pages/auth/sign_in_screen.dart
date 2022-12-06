@@ -11,6 +11,9 @@ class SignInScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -70,6 +73,7 @@ class SignInScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       CustomTextField(
+                        controller: emailController,
                         icon: Icons.email,
                         label: 'Email',
                         validator: (email) {
@@ -77,10 +81,12 @@ class SignInScreen extends StatelessWidget {
                             return 'Digite seu email!';
                           }
                           if (!email.isEmail) return 'Digite um email válido!';
+
                           return null;
                         },
                       ),
                       CustomTextField(
+                        controller: passwordController,
                         icon: Icons.lock,
                         label: 'Senha',
                         isSecret: true,
@@ -88,7 +94,7 @@ class SignInScreen extends StatelessWidget {
                           if (password == null || password.isEmpty) {
                             return 'Digite sua senha!';
                           }
-                          if (password.length < 7) {
+                          if (password.length < 6) {
                             return 'Digite uma senha com pelo menos 6 caracteres.';
                           }
 
@@ -105,12 +111,15 @@ class SignInScreen extends StatelessWidget {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              print('Todos os campos estão válidos');
+                              String email = emailController.text;
+                              String password = passwordController.text;
+
+                              print('Email: $email - Senha: $password');
                             } else {
                               print('Campos não válidos!');
                             }
 
-                            Get.offNamed(PagesRoutes.baseRoute);
+                            //Get.offNamed(PagesRoutes.baseRoute);
                           },
                           child: const Text(
                             'Entrar',
