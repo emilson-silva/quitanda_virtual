@@ -27,13 +27,24 @@ class HttpMManager {
 
     Dio dio = Dio();
 
-    dio.request(
-      url,
-      options: Options(
-        headers: defaultHeaders,
-        method: method,
-      ),
-      data: body,
-    );
+    try {
+      Response response = await dio.request(
+        url,
+        options: Options(
+          headers: defaultHeaders,
+          method: method,
+        ),
+        data: body,
+      );
+
+      // Retorno do resultado do server
+      return response.data;
+    } on DioError catch (error) {
+      // Retorno do erro do dio request
+      return error.response?.data ?? {};
+    } catch (error) {
+      //Retorno de map vazio para error generalizado
+      return {};
+    }
   }
 }
