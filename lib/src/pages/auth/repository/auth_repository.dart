@@ -1,4 +1,5 @@
 import 'package:quitanda_virtual/src/constants/endpoints.dart';
+import 'package:quitanda_virtual/src/models/user_model.dart';
 import 'package:quitanda_virtual/src/services/http_manager.dart';
 
 class AuthRepository {
@@ -8,15 +9,19 @@ class AuthRepository {
       url: Endpoints.signin,
       method: HttpMethods.post,
       body: {
-        "email": "emilsongyn17@gmail.com",
-        "password": "178659",
+        "email": email,
+        "password": password,
       },
     );
 
     if (result['result'] != null) {
       print('Signin funcionou!');
+
+      final user = UserModel.fromMap(result['result']);
+      print(user);
     } else {
       print('Sigin não funcionou!');
+      print(result['error']);
     }
   }
 }
