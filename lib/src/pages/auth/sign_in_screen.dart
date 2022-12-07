@@ -112,19 +112,23 @@ class SignInScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(18),
                                 ),
                               ),
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  String email = emailController.text;
-                                  String password = passwordController.text;
+                              onPressed: authController.isLoading.value
+                                  ? null
+                                  : () {
+                                      FocusScope.of(context).unfocus();
+                                      if (_formKey.currentState!.validate()) {
+                                        String email = emailController.text;
+                                        String password =
+                                            passwordController.text;
 
-                                  authController.signIn(
-                                      email: email, password: password);
-                                } else {
-                                  print('Campos não válidos!');
-                                }
+                                        authController.signIn(
+                                            email: email, password: password);
+                                      } else {
+                                        print('Campos não válidos!');
+                                      }
 
-                                //Get.offNamed(PagesRoutes.baseRoute);
-                              },
+                                      //Get.offNamed(PagesRoutes.baseRoute);
+                                    },
                               child: authController.isLoading.value
                                   ? const CircularProgressIndicator()
                                   : const Text(
