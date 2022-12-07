@@ -66,7 +66,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '563825285975',
     projectId: 'login-page-feb34',
     storageBucket: 'login-page-feb34.appspot.com',
-    iosClientId: '563825285975-5nbrmqocpp7qmajudvauljb8fog4ffkg.apps.googleusercontent.com',
+    iosClientId:
+        '563825285975-5nbrmqocpp7qmajudvauljb8fog4ffkg.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterFirebase',
   );
 
@@ -76,7 +77,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '563825285975',
     projectId: 'login-page-feb34',
     storageBucket: 'login-page-feb34.appspot.com',
-    iosClientId: '563825285975-5nbrmqocpp7qmajudvauljb8fog4ffkg.apps.googleusercontent.com',
+    iosClientId:
+        '563825285975-5nbrmqocpp7qmajudvauljb8fog4ffkg.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterFirebase',
   );
 }
