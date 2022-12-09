@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:quitanda_virtual/src/pages/auth/controller/auth_controller.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/custom_text_field.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 import 'package:quitanda_virtual/src/services/validators.dart';
@@ -16,6 +18,7 @@ class SignUpScreen extends StatelessWidget {
   );
 
   final _formKey = GlobalKey<FormState>();
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,26 +61,38 @@ class SignUpScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const CustomTextField(
+                          CustomTextField(
                             textInputType: TextInputType.emailAddress,
+                            onSaved: (value) {
+                              authController.user.email = value;
+                            },
                             validator: emailValidator,
                             icon: Icons.email,
                             label: 'Email',
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             validator: passwordValidator,
                             textInputType: TextInputType.number,
+                            onSaved: (value) {
+                              authController.user.password = value;
+                            },
                             icon: Icons.lock,
                             label: 'Senha',
                             isSecret: true,
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             validator: nameValidator,
+                            onSaved: (value) {
+                              authController.user.name = value;
+                            },
                             icon: Icons.person,
                             label: 'Nome',
                           ),
                           CustomTextField(
                             textInputType: TextInputType.phone,
+                            onSaved: (value) {
+                              authController.user.phone = value;
+                            },
                             validator: phoneValifator,
                             icon: Icons.phone,
                             label: 'Celular',
@@ -85,6 +100,9 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           CustomTextField(
                             textInputType: TextInputType.number,
+                            onSaved: (value) {
+                              authController.user.cpf = value;
+                            },
                             validator: cpfValidator,
                             icon: Icons.file_copy,
                             label: 'CPF',
@@ -92,21 +110,35 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             height: 50,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18),
-                                ),
-                              ),
-                              onPressed: () {
-                                _formKey.currentState!.validate();
+                            child: Obx(
+                              () {
+                                return ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                    ),
+                                  ),
+                                  onPressed: authController.isLoading.value
+                                      ? null
+                                      : () {
+                                          FocusScope.of(context).unfocus();
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            _formKey.currentState!.save();
+
+                                            //authController.signUp();
+                                          }
+                                        },
+                                  child: authController.isLoading.value
+                                      ? const CircularProgressIndicator()
+                                      : const Text(
+                                          'Cadastrar Usuário',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                );
                               },
-                              child: const Text(
-                                'Cadastrar usuário',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
                             ),
                           ),
                         ],
