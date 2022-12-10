@@ -5,6 +5,8 @@ import 'package:quitanda_virtual/src/pages/home/repository/home_repository.dart'
 import 'package:quitanda_virtual/src/pages/home/result/home_result.dart';
 import 'package:quitanda_virtual/src/services/utils_services.dart';
 
+const int itemsPerPage = 6;
+
 class HomeContoller extends GetxController {
   final homeRepository = HomeRepository();
   final utilsServices = UtilsServices();
@@ -58,10 +60,9 @@ class HomeContoller extends GetxController {
     setLoading(true);
 
     Map<String, dynamic> body = {
-      "page": 0,
-      "title": null,
-      "categoryId": "5mjkt5ERRo",
-      "itemsPerPage": 6
+      'page': currentCategory!.pagination,
+      'categoryId': currentCategory!.id,
+      'itemsPerPage': itemsPerPage,
     };
 
     HomeResult<ItemModel> result = await homeRepository.getAllProducts(body);
