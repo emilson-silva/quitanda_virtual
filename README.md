@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-## Getting Started
+## Projeto em andamento
 
  App de uma Quitanda Virtual, incluindo pagamentos por Pix e utilizando o Getx como gerência de Estado!
 

@@ -36,8 +36,6 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     super.initState();
 
-    Get.find<HomeContoller>().printExample();
-
     Future.delayed(
       const Duration(seconds: 3),
       () {
