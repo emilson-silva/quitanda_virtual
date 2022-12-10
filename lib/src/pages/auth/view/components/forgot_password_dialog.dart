@@ -12,6 +12,8 @@ class ForgotPasswordDialog extends StatelessWidget {
     emailController.text = email;
   }
 
+  final formFieldKey = GlobalKey<FormFieldState>();
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -56,6 +58,7 @@ class ForgotPasswordDialog extends StatelessWidget {
 
                 // Campo de email
                 CustomTextField(
+                  formFieldKey: formFieldKey,
                   controller: emailController,
                   icon: Icons.email,
                   label: 'Email',
@@ -73,7 +76,9 @@ class ForgotPasswordDialog extends StatelessWidget {
                       color: Colors.green,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    formFieldKey.currentState!.validate();
+                  },
                   child: const Text(
                     'Recuperar',
                     style: TextStyle(
