@@ -9,7 +9,6 @@ import 'package:quitanda_virtual/src/pages/commom_widgets/custom_shimmer.dart';
 import 'package:quitanda_virtual/src/pages/home/controller/home_controller.dart';
 
 import 'package:quitanda_virtual/src/pages/home/views/components/category_tile.dart';
-import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
 import 'package:quitanda_virtual/src/pages/home/views/components/item_tile.dart';
 
 class HomeTab extends StatefulWidget {
@@ -28,10 +27,7 @@ class _HomeTabState extends State<HomeTab> {
     runAddToCardAnimation(gkImage);
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  final controller = Get.find<HomeContoller>();
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +84,9 @@ class _HomeTabState extends State<HomeTab> {
                 vertical: 10,
               ),
               child: TextFormField(
+                onChanged: (value) {
+                  controller.searchTitle.value = value;
+                },
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
