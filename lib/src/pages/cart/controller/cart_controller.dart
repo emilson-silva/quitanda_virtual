@@ -40,6 +40,22 @@ class CartController extends GetxController {
       quantity: quantity,
     );
 
+    if (result) {
+      if (quantity == 0) {
+        cartItems.removeWhere((cartItem) => cartItem.id == item.id);
+      } else {
+        cartItems.firstWhere((cartItem) => cartItem.id == item.id).quantity =
+            quantity;
+      }
+
+      update();
+    } else {
+      utilsServices.showToast(
+        message: 'Ocorreu um erro ao alterar a quantidade do produto',
+        isError: true,
+      );
+    }
+
     return result;
   }
 
@@ -73,20 +89,10 @@ class CartController extends GetxController {
 
     if (itemIndex >= 0) {
       final product = cartItems[itemIndex];
-
-      final result = await changeItemQuantity(
+      await changeItemQuantity(
         item: product,
         quantity: (product.quantity + quantity),
       );
-
-      if (result) {
-        cartItems[itemIndex].quantity += quantity;
-      } else {
-        utilsServices.showToast(
-          message: 'Ocorreu um erro ao alterar a quantidadedo produto',
-          isError: true,
-        );
-      }
     } else {
       final CartResult<String> result = await cartRepository.addItemToCart(
         userId: authController.user.id!,
