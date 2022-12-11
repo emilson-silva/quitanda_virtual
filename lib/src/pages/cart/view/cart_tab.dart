@@ -18,16 +18,6 @@ class CartTab extends StatefulWidget {
 class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
 
-  void removeItemFromCart(CartItemModel cartItem) {
-    // setState(() {
-    //   appData.cartItems.remove(cartItem);
-
-    //   utilsServices.showToast(
-    //     message: '${cartItem.item.itemName} removido(a) do carrinho!',
-    //   );
-    // });
-  }
-
   double cartTotalPrice() {
     double total = 0;
     // for (var item in appData.cartItems) {
@@ -51,11 +41,9 @@ class _CartTabState extends State<CartTab> {
                 return ListView.builder(
                   itemCount: controller.cartItems.length,
                   itemBuilder: (_, index) {
-                    return Container();
-                    // return CartTile(
-                    //   cartItem: appData.cartItems[index],
-                    //   remove: removeItemFromCart,
-                    // );
+                    return CartTile(
+                      cartItem: controller.cartItems[index],
+                    );
                   },
                 );
               },
@@ -85,13 +73,18 @@ class _CartTabState extends State<CartTab> {
                   'Total geral',
                   style: TextStyle(fontSize: 12),
                 ),
-                Text(
-                  utilsServices.priceToCurrency(cartTotalPrice()),
-                  style: TextStyle(
-                    fontSize: 23,
-                    color: CustomColors.customSwatchColor,
-                    fontWeight: FontWeight.bold,
-                  ),
+                GetBuilder<CartController>(
+                  builder: (controller) {
+                    return Text(
+                      utilsServices
+                          .priceToCurrency(controller.cartTotalPrice()),
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: CustomColors.customSwatchColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 50,

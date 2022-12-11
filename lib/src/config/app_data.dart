@@ -1,4 +1,3 @@
-import 'package:quitanda_virtual/src/models/cart_item_model.dart';
 import 'package:quitanda_virtual/src/models/item_model.dart';
 import 'package:quitanda_virtual/src/models/order_model.dart';
 import 'package:quitanda_virtual/src/models/user_model.dart';
