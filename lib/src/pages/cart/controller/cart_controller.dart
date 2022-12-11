@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:quitanda_virtual/src/models/cart_item_model.dart';
+import 'package:quitanda_virtual/src/models/item_model.dart';
 import 'package:quitanda_virtual/src/pages/auth/controller/auth_controller.dart';
 import 'package:quitanda_virtual/src/pages/cart/cart_result/cart_result.dart';
 import 'package:quitanda_virtual/src/pages/cart/repository/cart_repository.dart';
@@ -47,5 +48,35 @@ class CartController extends GetxController {
         );
       },
     );
+  }
+
+  int getItemIndex(ItemModel item) {
+    return cartItems.indexWhere((itemInList) => itemInList.id == item.id);
+  }
+
+  Future<void> addItemToCart(
+      {required ItemModel item, int quantity = 1}) async {
+    int itemIndex = getItemIndex(item);
+
+    if (itemIndex >= 0) {
+      // Já existe na listagem do carrinho
+      cartItems[itemIndex].quantity += quantity;
+    } else {
+      cartRepository.addItemToCart(
+        userId: userId,
+        token: token,
+        productId: productId,
+        quantity: quantity,
+      );
+      // Não existe na listagem
+      cartItems.add(
+        CartItemModel(
+          id: '',
+          item: item,
+          quantity: quantity,
+        ),
+      );
+    }
+    update();
   }
 }
