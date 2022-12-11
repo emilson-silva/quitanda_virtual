@@ -20,6 +20,12 @@ class CartController extends GetxController {
     getCartItems();
   }
 
+  int getCartTotalItems() {
+    return cartItems.isEmpty
+        ? 0
+        : cartItems.map((e) => e.quantity).reduce((a, b) => a + b);
+  }
+
   double cartTotalPrice() {
     double total = 0;
 

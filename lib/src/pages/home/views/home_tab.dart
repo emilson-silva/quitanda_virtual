@@ -4,6 +4,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
+import 'package:quitanda_virtual/src/pages/cart/controller/cart_controller.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/app_name_widget.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/custom_shimmer.dart';
 import 'package:quitanda_virtual/src/pages/home/controller/home_controller.dart';
@@ -22,6 +23,8 @@ class _HomeTabState extends State<HomeTab> {
   GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
 
   final searchController = TextEditingController();
+
+  final controller = Get.find<CartController>();
 
   late Function(GlobalKey) runAddToCardAnimation;
 
@@ -48,9 +51,9 @@ class _HomeTabState extends State<HomeTab> {
               onTap: () {},
               child: Badge(
                 badgeColor: CustomColors.customContrastColor,
-                badgeContent: const Text(
-                  '2',
-                  style: TextStyle(
+                badgeContent: Text(
+                  controller.getCartTotalItems().toString(),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                   ),
