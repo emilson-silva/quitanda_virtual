@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 import 'package:quitanda_virtual/src/models/cart_item_model.dart';
 import 'package:quitanda_virtual/src/pages/cart/components/cart_tile.dart';
+import 'package:quitanda_virtual/src/pages/cart/controller/cart_controller.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/payment_dialog.dart';
 import 'package:quitanda_virtual/src/services/utils_services.dart';
 import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
@@ -44,14 +46,18 @@ class _CartTabState extends State<CartTab> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: 0,
-              itemBuilder: (_, index) {
-                return Container();
-                // return CartTile(
-                //   cartItem: appData.cartItems[index],
-                //   remove: removeItemFromCart,
-                // );
+            child: GetBuilder<CartController>(
+              builder: (controller) {
+                return ListView.builder(
+                  itemCount: controller.cartItems.length,
+                  itemBuilder: (_, index) {
+                    return Container();
+                    // return CartTile(
+                    //   cartItem: appData.cartItems[index],
+                    //   remove: removeItemFromCart,
+                    // );
+                  },
+                );
               },
             ),
           ),
