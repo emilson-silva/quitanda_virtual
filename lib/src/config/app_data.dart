@@ -74,20 +74,20 @@ List<String> categories = [
   'Cereais',
 ];
 
-List<CartItemModel> cartItems = [
-  CartItemModel(
-    item: apple,
-    quantity: 4,
-  ),
-  CartItemModel(
-    item: mango,
-    quantity: 2,
-  ),
-  CartItemModel(
-    item: guava,
-    quantity: 1,
-  ),
-];
+// List<CartItemModel> cartItems = [
+//   CartItemModel(
+//     item: apple,
+//     quantity: 4,
+//   ),
+//   CartItemModel(
+//     item: mango,
+//     quantity: 2,
+//   ),
+//   CartItemModel(
+//     item: guava,
+//     quantity: 1,
+//   ),
+// ];
 
 UserModel user = UserModel(
   phone: '99 9 9999-9999',
@@ -111,14 +111,14 @@ List<OrderModel> orders = [
     status: 'pending_payment',
     total: 11.0,
     items: [
-      CartItemModel(
-        item: apple,
-        quantity: 2,
-      ),
-      CartItemModel(
-        item: mango,
-        quantity: 2,
-      ),
+      // CartItemModel(
+      //   item: apple,
+      //   quantity: 2,
+      // ),
+      // CartItemModel(
+      //   item: mango,
+      //   quantity: 2,
+      // ),
     ],
   ),
 
@@ -135,10 +135,10 @@ List<OrderModel> orders = [
     status: 'refunded',
     total: 11.5,
     items: [
-      CartItemModel(
-        item: guava,
-        quantity: 1,
-      ),
+      // CartItemModel(
+      //   item: guava,
+      //   quantity: 1,
+      // ),
     ],
   ),
 ];

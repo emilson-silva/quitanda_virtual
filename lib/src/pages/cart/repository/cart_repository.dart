@@ -1,10 +1,12 @@
 import 'package:quitanda_virtual/src/constants/endpoints.dart';
+import 'package:quitanda_virtual/src/models/cart_item_model.dart';
+import 'package:quitanda_virtual/src/pages/cart/cart_result/cart_result.dart';
 import 'package:quitanda_virtual/src/services/http_manager.dart';
 
 class CartRepository {
   final _httpManager = HttpMManager();
 
-  Future getCartItems({
+  Future<CartResult<List<CartItemModel>>> getCartItems({
     required String token,
     required String userId,
   }) async {
@@ -21,10 +23,16 @@ class CartRepository {
 
     if (result['result'] != null) {
       // Tratar
-      print(result['result']);
+      List<CartItemModel> data =
+          List<Map<String, dynamic>>.from(result['result'])
+              .map(CartItemModel.fromJson)
+              .toList();
+
+      return CartResult<List<CartItemModel>>.success(data);
     } else {
       // Retornar uma mensagem
-      print('Ocorreu um erro ao recuperar os itens do carrinho.');
+      return CartResult.error(
+          'Ocorreu um erro ao recuperar os intens do carrinho');
     }
   }
 }
