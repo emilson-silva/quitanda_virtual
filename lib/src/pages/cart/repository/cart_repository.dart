@@ -40,7 +40,7 @@ class CartRepository {
     required String userId,
     required String token,
     required String productId,
-    required String quantity,
+    required int quantity,
   }) async {
     final result = await _httpManager.restRequest(
         url: Endpoints.addItemToCart,
@@ -51,7 +51,7 @@ class CartRepository {
           'productId': productId,
         },
         headers: {
-          'token': token,
+          'X-Parse-Session-Token': token,
         });
 
     if (result['result'] != null) {
