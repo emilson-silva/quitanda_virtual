@@ -21,8 +21,10 @@ class CartRepository {
 
     if (result['result'] != null) {
       // Tratar
+      print(result['result']);
     } else {
       // Retornar uma mensagem
+      print('Ocorreu um erro ao recuperar os itens do carrinho.');
     }
   }
 }
