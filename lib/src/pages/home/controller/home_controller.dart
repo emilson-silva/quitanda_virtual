@@ -7,8 +7,8 @@ import 'package:quitanda_virtual/src/services/utils_services.dart';
 
 const int itemsPerPage = 6;
 
-class HomeContoller extends GetxController {
-  final homeRepository = HomeRepository();
+class HomeController extends GetxController {
+  final homeRespository = HomeRepository();
   final utilsServices = UtilsServices();
 
   bool isCategoryLoading = false;
@@ -30,18 +30,19 @@ class HomeContoller extends GetxController {
     } else {
       isProductLoading = value;
     }
-
     update();
   }
 
   @override
   void onInit() {
     super.onInit();
+
     debounce(
       searchTitle,
       (_) => filterByTitle(),
       time: const Duration(milliseconds: 600),
     );
+
     getAllCategories();
   }
 
@@ -56,8 +57,10 @@ class HomeContoller extends GetxController {
 
   Future<void> getAllCategories() async {
     setLoading(true);
+
     HomeResult<CategoryModel> homeResult =
-        await homeRepository.getAllCategories();
+        await homeRespository.getAllCategories();
+
     setLoading(false);
 
     homeResult.when(
@@ -92,7 +95,7 @@ class HomeContoller extends GetxController {
       if (c == null) {
         // Criar uma nova categoria com todos
         final allProductsCategory = CategoryModel(
-          title: 'todos',
+          title: 'Todos',
           id: '',
           items: [],
           pagination: 0,
@@ -137,7 +140,8 @@ class HomeContoller extends GetxController {
       }
     }
 
-    HomeResult<ItemModel> result = await homeRepository.getAllProducts(body);
+    HomeResult<ItemModel> result = await homeRespository.getAllProducts(body);
+
     setLoading(false, isProduct: true);
 
     result.when(

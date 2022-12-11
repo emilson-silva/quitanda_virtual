@@ -30,6 +30,19 @@ class CartController extends GetxController {
     return total;
   }
 
+  Future<bool> changeItemQuantity({
+    required CartItemModel item,
+    required int quantity,
+  }) async {
+    final result = await cartRepository.changeItemQuantity(
+      token: authController.user.token!,
+      cartItemId: item.id,
+      quantity: quantity,
+    );
+
+    return result;
+  }
+
   Future<void> getCartItems() async {
     final CartResult<List<CartItemModel>> result =
         await cartRepository.getCartItems(
@@ -59,8 +72,14 @@ class CartController extends GetxController {
     int itemIndex = getItemIndex(item);
 
     if (itemIndex >= 0) {
-      // Já existe na listagem do carrinho
-      cartItems[itemIndex].quantity += quantity;
+      final product = cartItems[itemIndex];
+
+      final result =
+          await changeItemQuantity(item: product, quantity: quantity);
+
+      if (result) {
+        cartItems[itemIndex].quantity += quantity;
+      } else {}
     } else {
       final CartResult<String> result = await cartRepository.addItemToCart(
         userId: authController.user.id!,

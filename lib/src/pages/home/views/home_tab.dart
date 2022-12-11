@@ -78,7 +78,7 @@ class _HomeTabState extends State<HomeTab> {
         child: Column(
           children: [
             // Campo de pesquisa
-            GetBuilder<HomeContoller>(
+            GetBuilder<HomeController>(
               builder: (controller) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
@@ -132,7 +132,7 @@ class _HomeTabState extends State<HomeTab> {
             ),
 
             // Categorias
-            GetBuilder<HomeContoller>(
+            GetBuilder<HomeController>(
               builder: (controller) {
                 return Container(
                   padding: const EdgeInsets.only(left: 25),
@@ -175,7 +175,7 @@ class _HomeTabState extends State<HomeTab> {
             ),
 
             // Grid
-            GetBuilder<HomeContoller>(
+            GetBuilder<HomeController>(
               builder: (controller) {
                 return Expanded(
                   child: !controller.isProductLoading
