@@ -14,10 +14,6 @@ void main() async {
   ]).then((_) {
     runApp(const MyApp());
   });
-
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
 }
 
 class MyApp extends StatelessWidget {

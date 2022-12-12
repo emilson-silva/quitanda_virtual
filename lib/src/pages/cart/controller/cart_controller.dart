@@ -66,7 +66,7 @@ class CartController extends GetxController {
       },
       error: (message) {
         utilsServices.showToast(
-          message: 'Pedido não confirmado',
+          message: message,
         );
       },
     );
