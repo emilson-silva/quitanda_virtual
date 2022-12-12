@@ -1,5 +1,6 @@
 import 'package:quitanda_virtual/src/constants/endpoints.dart';
 import 'package:quitanda_virtual/src/models/cart_item_model.dart';
+import 'package:quitanda_virtual/src/models/order_model.dart';
 import 'package:quitanda_virtual/src/pages/cart/cart_result/cart_result.dart';
 import 'package:quitanda_virtual/src/services/http_manager.dart';
 
@@ -33,6 +34,29 @@ class CartRepository {
       // Retornar uma mensagem
       return CartResult.error(
           'Ocorreu um erro ao recuperar os intens do carrinho');
+    }
+  }
+
+  Future<CartResult<OrderModel>> checkoutCart({
+    required String token,
+    required double total,
+  }) async {
+    final result = await _httpManager.restRequest(
+      url: Endpoints.checkout,
+      method: HttpMethods.post,
+      body: {
+        'total': total,
+      },
+      headers: {
+        'X-Parse-Session-Token': token,
+      },
+    );
+    if (result['result']) {
+      final order = OrderModel.fromJson(result['result']);
+
+      return CartResult<OrderModel>.success(order);
+    } else {
+      return CartResult.error('Não foi possível realizar o pedido.');
     }
   }
 
