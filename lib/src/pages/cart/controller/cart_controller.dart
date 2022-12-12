@@ -16,17 +16,13 @@ class CartController extends GetxController {
 
   List<CartItemModel> cartItems = [];
 
+  bool isCheckoutLoading = false;
+
   @override
   void onInit() {
     super.onInit();
 
     getCartItems();
-  }
-
-  int getCartTotalItems() {
-    return cartItems.isEmpty
-        ? 0
-        : cartItems.map((e) => e.quantity).reduce((a, b) => a + b);
   }
 
   double cartTotalPrice() {
@@ -39,13 +35,26 @@ class CartController extends GetxController {
     return total;
   }
 
+  void setCheckoutLoading(bool value) {
+    isCheckoutLoading = value;
+    update();
+  }
+
   Future checkoutCart() async {
+    setCheckoutLoading(true);
+
     CartResult<OrderModel> result = await cartRepository.checkoutCart(
       token: authController.user.token!,
       total: cartTotalPrice(),
     );
+
+    setCheckoutLoading(false);
+
     result.when(
       success: (order) {
+        cartItems.clear();
+        update();
+
         showDialog(
           context: Get.context!,
           builder: (_) {
@@ -98,6 +107,7 @@ class CartController extends GetxController {
       token: authController.user.token!,
       userId: authController.user.id!,
     );
+
     result.when(
       success: (data) {
         cartItems = data;
@@ -122,10 +132,9 @@ class CartController extends GetxController {
 
     if (itemIndex >= 0) {
       final product = cartItems[itemIndex];
+
       await changeItemQuantity(
-        item: product,
-        quantity: (product.quantity + quantity),
-      );
+          item: product, quantity: (product.quantity + quantity));
     } else {
       final CartResult<String> result = await cartRepository.addItemToCart(
         userId: authController.user.id!,
@@ -152,6 +161,7 @@ class CartController extends GetxController {
         },
       );
     }
+
     update();
   }
 }

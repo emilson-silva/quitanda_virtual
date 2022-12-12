@@ -26,6 +26,7 @@ class _CartTabState extends State<CartTab> {
       ),
       body: Column(
         children: [
+          // Lista de itens do carrinho
           Expanded(
             child: GetBuilder<CartController>(
               builder: (controller) {
@@ -36,16 +37,9 @@ class _CartTabState extends State<CartTab> {
                       Icon(
                         Icons.remove_shopping_cart,
                         size: 40,
-                        color: CustomColors.customSwatchColor.shade500,
+                        color: CustomColors.customSwatchColor,
                       ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'Não há itens no carrinho.',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      const Text('Não há itens no carrinho'),
                     ],
                   );
                 }
@@ -61,14 +55,14 @@ class _CartTabState extends State<CartTab> {
               },
             ),
           ),
+
+          // Total e botão de concluir o pedido
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(
-                  30,
-                ),
+                top: Radius.circular(30),
               ),
               boxShadow: [
                 BoxShadow(
@@ -81,50 +75,69 @@ class _CartTabState extends State<CartTab> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
-                  'Total geral',
-                  style: TextStyle(fontSize: 12),
-                ),
-                GetBuilder<CartController>(
-                  builder: (controller) {
-                    return Text(
-                      utilsServices
-                          .priceToCurrency(controller.cartTotalPrice()),
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: CustomColors.customSwatchColor,
-                        fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(left: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Total geral',
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
                       ),
-                    );
-                  },
+                      GetBuilder<CartController>(
+                        builder: (controller) {
+                          return Text(
+                            utilsServices
+                                .priceToCurrency(controller.cartTotalPrice()),
+                            style: TextStyle(
+                              fontSize: 23,
+                              color: CustomColors.customSwatchColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 50,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CustomColors.customSwatchColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                    onPressed: () async {
-                      bool? result = await showOrderConfirmation();
+                  child: GetBuilder<CartController>(
+                    builder: (controller) {
+                      return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CustomColors.customSwatchColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                        ),
+                        onPressed: (controller.isCheckoutLoading ||
+                                controller.cartItems.isEmpty)
+                            ? null
+                            : () async {
+                                bool? result = await showOrderConfirmation();
 
-                      if (result ?? false) {
-                        cartController.checkoutCart();
-                      }
+                                if (result ?? false) {
+                                  cartController.checkoutCart();
+                                }
+                              },
+                        child: controller.isCheckoutLoading
+                            ? const CircularProgressIndicator()
+                            : const Text(
+                                'Concluir pedido',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                      );
                     },
-                    child: const Text(
-                      'Concluir pedido',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -8,7 +8,7 @@ import 'package:quitanda_virtual/src/services/utils_services.dart';
 const int itemsPerPage = 6;
 
 class HomeController extends GetxController {
-  final homeRespository = HomeRepository();
+  final homeRespository = HomeRespository();
   final utilsServices = UtilsServices();
 
   bool isCategoryLoading = false;

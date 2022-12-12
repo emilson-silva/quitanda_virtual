@@ -1,5 +1,5 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:quitanda_virtual/src/models/order_model.dart';
 import 'package:quitanda_virtual/src/services/utils_services.dart';
 
@@ -7,9 +7,9 @@ class PaymentDialog extends StatelessWidget {
   final OrderModel order;
 
   PaymentDialog({
-    super.key,
+    Key? key,
     required this.order,
-  });
+  }) : super(key: key);
 
   final UtilsServices utilsServices = UtilsServices();
 
@@ -17,18 +17,18 @@ class PaymentDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          20,
-        ),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
         alignment: Alignment.center,
         children: [
+          // Conteúdo
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // Titulo
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
@@ -39,19 +39,23 @@ class PaymentDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                QrImage(
-                  data: '1234567890',
-                  version: QrVersions.auto,
-                  size: 200.0,
+
+                // QR Code
+                Image.memory(
+                  utilsServices.decodeQrCodeImage(order.qrCodeImage),
+                  height: 200,
+                  width: 200,
                 ),
+
+                // Vencimento
                 Text(
-                  'Vencimento: ${utilsServices.formatDateTime(
-                    order.overdueDateTime,
-                  )}',
+                  'Vencimento: ${utilsServices.formatDateTime(order.overdueDateTime)}',
                   style: const TextStyle(
                     fontSize: 12,
                   ),
                 ),
+
+                // Total
                 Text(
                   'Total: ${utilsServices.priceToCurrency(order.total)}',
                   style: const TextStyle(
@@ -59,6 +63,8 @@ class PaymentDialog extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
+                // Botão copia e cola
                 OutlinedButton.icon(
                   style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -69,7 +75,10 @@ class PaymentDialog extends StatelessWidget {
                       color: Colors.green,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    FlutterClipboard.copy(order.copyAndPaste);
+                    utilsServices.showToast(message: 'Código copiado');
+                  },
                   icon: const Icon(
                     Icons.copy,
                     size: 15,
@@ -84,6 +93,7 @@ class PaymentDialog extends StatelessWidget {
               ],
             ),
           ),
+
           Positioned(
             top: 0,
             right: 0,

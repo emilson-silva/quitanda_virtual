@@ -5,7 +5,7 @@ import 'package:quitanda_virtual/src/pages/cart/cart_result/cart_result.dart';
 import 'package:quitanda_virtual/src/services/http_manager.dart';
 
 class CartRepository {
-  final _httpManager = HttpMManager();
+  final _httpManager = HttpManager();
 
   Future<CartResult<List<CartItemModel>>> getCartItems({
     required String token,
@@ -23,7 +23,6 @@ class CartRepository {
     );
 
     if (result['result'] != null) {
-      // Tratar
       List<CartItemModel> data =
           List<Map<String, dynamic>>.from(result['result'])
               .map(CartItemModel.fromJson)
@@ -31,9 +30,8 @@ class CartRepository {
 
       return CartResult<List<CartItemModel>>.success(data);
     } else {
-      // Retornar uma mensagem
       return CartResult.error(
-          'Ocorreu um erro ao recuperar os intens do carrinho');
+          'Ocorreu um erro ao recuperar os itens do carrinho');
     }
   }
 
@@ -51,12 +49,13 @@ class CartRepository {
         'X-Parse-Session-Token': token,
       },
     );
-    if (result['result']) {
+
+    if (result['result'] != null) {
       final order = OrderModel.fromJson(result['result']);
 
       return CartResult<OrderModel>.success(order);
     } else {
-      return CartResult.error('Não foi possível realizar o pedido.');
+      return CartResult.error('Não foi possível realizar o pedido');
     }
   }
 
@@ -99,10 +98,8 @@ class CartRepository {
         });
 
     if (result['result'] != null) {
-      // Adicionamos o produto caso de sucesso
       return CartResult<String>.success(result['result']['id']);
     } else {
-      // Caso de erro ao adicionar
       return CartResult.error('Não foi possível adicionar o item no carrinho');
     }
   }

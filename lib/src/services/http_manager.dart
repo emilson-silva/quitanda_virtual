@@ -8,7 +8,7 @@ abstract class HttpMethods {
   static const String delete = 'DELETE';
 }
 
-class HttpMManager {
+class HttpManager {
   Future restRequest({
     required String url,
     required String method,

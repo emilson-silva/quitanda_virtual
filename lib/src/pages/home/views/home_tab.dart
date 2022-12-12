@@ -26,8 +26,6 @@ class _HomeTabState extends State<HomeTab> {
   final searchController = TextEditingController();
   final navigationController = Get.find<NavigationController>();
 
-  final controller = Get.find<CartController>();
-
   late Function(GlobalKey) runAddToCardAnimation;
 
   void itemSelectedCartAnimations(GlobalKey gkImage) {
@@ -102,6 +100,19 @@ class _HomeTabState extends State<HomeTab> {
                       controller.searchTitle.value = value;
                     },
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      isDense: true,
+                      hintText: 'Pesquise aqui...',
+                      hintStyle: TextStyle(
+                        color: Colors.grey.shade400,
+                        fontSize: 14,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: CustomColors.customContrastColor,
+                        size: 21,
+                      ),
                       suffixIcon: controller.searchTitle.value.isNotEmpty
                           ? IconButton(
                               onPressed: () {
@@ -116,19 +127,6 @@ class _HomeTabState extends State<HomeTab> {
                               ),
                             )
                           : null,
-                      filled: true,
-                      fillColor: Colors.white,
-                      isDense: true,
-                      hintText: 'Pesquise aqui...',
-                      hintStyle: TextStyle(
-                        color: Colors.grey.shade400,
-                        fontSize: 14,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: CustomColors.customContrastColor,
-                        size: 21,
-                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(60),
                         borderSide: const BorderSide(
@@ -201,9 +199,7 @@ class _HomeTabState extends State<HomeTab> {
                                 size: 40,
                                 color: CustomColors.customSwatchColor,
                               ),
-                              const Text(
-                                'Não há itens para apresentar',
-                              ),
+                              const Text('Não há itens para apresentar'),
                             ],
                           ),
                           child: GridView.builder(

@@ -11,10 +11,10 @@ class ItemTile extends StatefulWidget {
   final void Function(GlobalKey) cartAnimationMethod;
 
   const ItemTile({
-    super.key,
+    Key? key,
     required this.item,
     required this.cartAnimationMethod,
-  });
+  }) : super(key: key);
 
   @override
   State<ItemTile> createState() => _ItemTileState();
@@ -30,9 +30,7 @@ class _ItemTileState extends State<ItemTile> {
 
   Future<void> switchIcon() async {
     setState(() => tileIcon = Icons.check);
-
     await Future.delayed(const Duration(milliseconds: 1500));
-
     setState(() => tileIcon = Icons.add_shopping_cart_outlined);
   }
 
@@ -40,12 +38,10 @@ class _ItemTileState extends State<ItemTile> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // Conteúdo
         GestureDetector(
           onTap: () {
-            Get.toNamed(
-              PagesRoutes.productRoute,
-              arguments: widget.item,
-            );
+            Get.toNamed(PagesRoutes.productRoute, arguments: widget.item);
           },
           child: Card(
             elevation: 1,
@@ -54,10 +50,11 @@ class _ItemTileState extends State<ItemTile> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  // Imagem
                   Expanded(
                     child: Hero(
                       tag: widget.item.imgUrl,
@@ -67,6 +64,8 @@ class _ItemTileState extends State<ItemTile> {
                       ),
                     ),
                   ),
+
+                  // Nome
                   Text(
                     widget.item.itemName,
                     style: const TextStyle(
@@ -74,6 +73,8 @@ class _ItemTileState extends State<ItemTile> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
+                  // Preço - Unidade
                   Row(
                     children: [
                       Text(
@@ -91,14 +92,16 @@ class _ItemTileState extends State<ItemTile> {
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
                         ),
-                      )
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
           ),
         ),
+
+        // Botão add carrinho
         Positioned(
           top: 4,
           right: 4,

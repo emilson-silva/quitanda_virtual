@@ -6,7 +6,7 @@ import 'package:quitanda_virtual/src/pages/auth/result/auth_result.dart';
 import 'package:quitanda_virtual/src/services/http_manager.dart';
 
 class AuthRepository {
-  final HttpMManager _httpManger = HttpMManager();
+  final HttpManager _httpManger = HttpManager();
 
   AuthResult handleUserOrError(Map<dynamic, dynamic> result) {
     if (result['result'] != null) {
@@ -49,7 +49,6 @@ class AuthRepository {
     final result = await _httpManger.restRequest(
       url: Endpoints.signup,
       method: HttpMethods.post,
-      // TODO enviar dados
       body: user.toJson(),
     );
 
