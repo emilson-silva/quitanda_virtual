@@ -11,8 +11,8 @@ Feito na arquitetura MVC.
 Flutter versão 3.3.9,
 
 packages utilizados e suas versões:
-cupertino_icons: ^1.0.2 >
-  animated_text_kit: ^4.2.1 >
+cupertino_icons: ^1.0.2 
+  animated_text_kit: ^4.2.1 
   mask_text_input_formatter: ^2.0.0
   badges: ^2.0.1
   intl: ^0.17.0
