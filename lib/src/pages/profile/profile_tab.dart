@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quitanda_virtual/src/pages/auth/controller/auth_controller.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/custom_text_field.dart';
-import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
 import 'package:quitanda_virtual/src/services/validators.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -14,6 +13,7 @@ class ProfileTab extends StatefulWidget {
 
 class _ProfileTabState extends State<ProfileTab> {
   final authController = Get.find<AuthController>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -89,78 +89,83 @@ class _ProfileTabState extends State<ProfileTab> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Stack(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Text(
-                        'Atualização de senha',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Stack(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        child: Text(
+                          'Atualização de senha',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      right: 5,
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon: const Icon(Icons.close),
+                      Positioned(
+                        right: 5,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(Icons.close),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const CustomTextField(
-                  isSecret: true,
-                  icon: Icons.lock,
-                  label: 'Senha atual',
-                  validator: passwordValidator,
-                ),
-                CustomTextField(
-                  controller: newPasswordController,
-                  isSecret: true,
-                  icon: Icons.lock_outlined,
-                  label: 'Nova Senha',
-                  validator: passwordValidator,
-                ),
-                CustomTextField(
-                  isSecret: true,
-                  icon: Icons.lock_outline,
-                  label: 'Confirmar nova senha',
-                  validator: (password) {
-                    final result = passwordValidator(password);
-                    if (result != null) {
-                      return result;
-                    }
-                    if (password != newPasswordController.text) {
-                      return 'As senhas não são equivalentes';
-                    }
+                    ],
+                  ),
+                  const CustomTextField(
+                    isSecret: true,
+                    icon: Icons.lock,
+                    label: 'Senha atual',
+                    validator: passwordValidator,
+                  ),
+                  CustomTextField(
+                    controller: newPasswordController,
+                    isSecret: true,
+                    icon: Icons.lock_outlined,
+                    label: 'Nova Senha',
+                    validator: passwordValidator,
+                  ),
+                  CustomTextField(
+                    isSecret: true,
+                    icon: Icons.lock_outline,
+                    label: 'Confirmar nova senha',
+                    validator: (password) {
+                      final result = passwordValidator(password);
+                      if (result != null) {
+                        return result;
+                      }
+                      if (password != newPasswordController.text) {
+                        return 'As senhas não são equivalentes';
+                      }
 
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: 45,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Atualizar',
+                      onPressed: () {
+                        _formKey.currentState!.validate();
+                      },
+                      child: const Text(
+                        'Atualizar',
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
