@@ -1,13 +1,14 @@
 <h1 align="center">QuitandaGoiana</h1>
 
-A new Flutter project.
+Projeto em Flutter.
 
 ## Projeto em andamento
 
  App de uma Quitanda Virtual, incluindo pagamentos por Pix e utilizando o Getx como gerência de Estado!
 
-A few resources to get you started if this is your first Flutter project:
+
 Feito na arquitetura MVC.
+
 Flutter versão 3.3.9,
 
 packages utilizados e suas versões:
