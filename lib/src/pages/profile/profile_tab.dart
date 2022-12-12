@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:quitanda_virtual/src/pages/auth/controller/auth_controller.dart';
 import 'package:quitanda_virtual/src/pages/commom_widgets/custom_text_field.dart';
 import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
+import 'package:quitanda_virtual/src/services/validators.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -34,25 +35,25 @@ class _ProfileTabState extends State<ProfileTab> {
         children: [
           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.email,
+            initialValue: authController.user.email,
             icon: Icons.email,
             label: 'Email',
           ),
           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.name,
+            initialValue: authController.user.name,
             icon: Icons.person,
             label: 'Nome',
           ),
           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.phone,
+            initialValue: authController.user.phone,
             icon: Icons.phone,
             label: 'Celular',
           ),
           CustomTextField(
             readOnly: true,
-            initialValue: appData.user.cpf,
+            initialValue: authController.user.cpf,
             icon: Icons.file_copy,
             label: 'CPF',
             isSecret: true,
@@ -78,6 +79,7 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   Future<bool?> updatePassword() {
+    final newPasswordController = TextEditingController();
     return showDialog(
       context: context,
       builder: (context) {
@@ -119,16 +121,30 @@ class _ProfileTabState extends State<ProfileTab> {
                   isSecret: true,
                   icon: Icons.lock,
                   label: 'Senha atual',
+                  validator: passwordValidator,
                 ),
-                const CustomTextField(
+                CustomTextField(
+                  controller: newPasswordController,
                   isSecret: true,
                   icon: Icons.lock_outlined,
                   label: 'Nova Senha',
+                  validator: passwordValidator,
                 ),
-                const CustomTextField(
+                CustomTextField(
                   isSecret: true,
                   icon: Icons.lock_outline,
                   label: 'Confirmar nova senha',
+                  validator: (password) {
+                    final result = passwordValidator(password);
+                    if (result != null) {
+                      return result;
+                    }
+                    if (password != newPasswordController.text) {
+                      return 'As senhas não são equivalentes';
+                    }
+
+                    return null;
+                  },
                 ),
                 SizedBox(
                   height: 45,
