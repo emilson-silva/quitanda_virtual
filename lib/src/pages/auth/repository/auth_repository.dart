@@ -1,7 +1,7 @@
 import 'package:quitanda_virtual/src/constants/endpoints.dart';
 import 'package:quitanda_virtual/src/models/user_model.dart';
 import 'package:quitanda_virtual/src/pages/auth/repository/auth_errors.dart'
-    as authErrorsSTring;
+    as auth_errors;
 import 'package:quitanda_virtual/src/pages/auth/result/auth_result.dart';
 import 'package:quitanda_virtual/src/services/http_manager.dart';
 
@@ -14,8 +14,7 @@ class AuthRepository {
 
       return AuthResult.success(user);
     } else {
-      return AuthResult.error(
-          authErrorsSTring.authErrorsSTring(result['error']));
+      return AuthResult.error(auth_errors.authErrorsSTring(result['error']));
     }
   }
 

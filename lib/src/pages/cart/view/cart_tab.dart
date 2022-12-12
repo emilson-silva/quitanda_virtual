@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:quitanda_virtual/src/config/custom_colors.dart';
 import 'package:quitanda_virtual/src/pages/cart/components/cart_tile.dart';
 import 'package:quitanda_virtual/src/pages/cart/controller/cart_controller.dart';
-import 'package:quitanda_virtual/src/pages/commom_widgets/payment_dialog.dart';
 import 'package:quitanda_virtual/src/services/utils_services.dart';
-import 'package:quitanda_virtual/src/config/app_data.dart' as appData;
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
