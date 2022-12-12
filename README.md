@@ -7,12 +7,32 @@ A new Flutter project.
  App de uma Quitanda Virtual, incluindo pagamentos por Pix e utilizando o Getx como gerência de Estado!
 
 A few resources to get you started if this is your first Flutter project:
+Feito na arquitetura MVC.
+Flutter versão 3.3.9,
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+packages utilizados e suas versões:
+cupertino_icons: ^1.0.2
+  animated_text_kit: ^4.2.1
+  mask_text_input_formatter: ^2.0.0
+  badges: ^2.0.1
+  intl: ^0.17.0
+  cloud_firestore: ^3.4.6
+  firebase_auth: ^3.6.3
+  flutterfire_cli: ^0.2.4
+  firebase_core: ^1.20.1
+  firebase_core_platform_interface: 4.5.1
+  add_to_cart_animation: ^0.0.7
+  fluttertoast: ^8.0.8
+  shimmer: ^2.0.0
+  get: 4.6.1
+  dio: ^4.0.6
+  json_annotation: ^4.4.0
+  build_runner: ^2.1.10
+  freezed: ^2.0.2
+  freezed_annotation: ^2.0.1
+  flutter_secure_storage: ^5.0.2
+  clipboard: ^0.1.3
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
 
 > :construction: Projeto em construção :construction:
